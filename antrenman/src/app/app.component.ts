@@ -1,73 +1,31 @@
 import { CommonModule, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { randomInt } from 'crypto';
+import { TiestoComponent } from './tiesto/tiesto.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, CommonModule],
   template: `
-    <ul>
-      <li
-        *ngFor="
-          let name of names;
-          index as i;
-          first as isFirst;
-          last as isLast;
-          even as isEven;
-          odd as isOdd
-        "
-      >
-        <p *ngIf="isFirst" style="color: aqua;">
-          {{ name }} || {{ i }} || Birinci mi? {{ isFirst }} || Sonuncu mu?
-          {{ isLast }} || Tek mi ? {{ isOdd }} || Cift mi? {{ isEven }}
-        </p>
-        <p *ngIf="!isFirst" style="color: crimson;">
-          {{ name }} || {{ i }} || Birinci mi? {{ isFirst }} || Sonuncu mu?
-          {{ isLast }} || Tek mi ? {{ isOdd }} || Cift mi? {{ isEven }}
-        </p>
-      </li>
-    </ul>
-
     <hr />
-    <ul>
-      @for(name of names; track name;let isFirst=$first;let i=$index;let
-      isOdd=$odd;let isLast=$last; let isEven=$even) { @if(isFirst){
-
-      <li *ngIf="isFirst" style="color: aqua;">
-        {{ name }} || {{ i }} || Birinci mi? {{ isFirst }} || Sonuncu mu?
-        {{ isLast }} || Tek mi ? {{ isOdd }} || Cift mi? {{ isEven }}
-      </li>
-
-      }@else{
-      <li *ngIf="!isFirst" style="color: crimson;">
-        {{ name }} || {{ i }} || Birinci mi? {{ isFirst }} || Sonuncu mu?
-        {{ isLast }} || Tek mi ? {{ isOdd }} || Cift mi? {{ isEven }}
-      </li>
-      } } @empty {
-      <li>No items found</li>
-      }
-    </ul>
-
-    <hr />
-
-    <ul>
-      @for (char of "Angular"; track char;let i = $index) {
-      <li>{{ char + +i }}</li>
-      }
-    </ul>
-    <hr />
-
-    <hr />
-
-    <div>
-      <p>Without JSON pipe:</p>
-      <pre>{{ dummyJson }}</pre>
-      <p>With JSON pipe:</p>
-      <pre>{{ dummyJson | json }}</pre>
+    <div [ngSwitch]="number">
+      <div *ngSwitchCase="1">cagdas</div>
+      <div *ngSwitchCase="2">selen</div>
+      <div *ngSwitchCase="3">alaattin</div>
+      <div *ngSwitchCase="4">dilek</div>
+      <div *ngSwitchCase="5">dilan</div>
+      <div *ngSwitchCase="6">meral</div>
+      <div *ngSwitchCase="7">erkin</div>
+      <div *ngSwitchCase="8">semih</div>
+      <div *ngSwitchDefault>Hicbiri</div>
     </div>
+
+    <hr />
+    <app-tiesto> </app-tiesto>
   `,
   styleUrl: './app.component.css',
+  imports: [RouterOutlet, NgFor, CommonModule, TiestoComponent],
 })
 export class AppComponent {
   names: string[] = [
@@ -80,6 +38,8 @@ export class AppComponent {
     'erkin',
     'semih',
   ];
+  number = randomInt(0, 9);
+
   dummyJson = {
     brand: 'apple',
     products: {
