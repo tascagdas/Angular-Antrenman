@@ -38,7 +38,7 @@ export class AppComponent {
     'erkin',
     'semih',
   ];
-  number = randomInt(0, 9);
+  number = randomInt(1, 8);
 
   dummyJson = {
     brand: 'apple',
