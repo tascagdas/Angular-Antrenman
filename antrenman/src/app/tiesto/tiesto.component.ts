@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DidirectiveDirective } from '../directives/didirective.directive';
-declare var $: any;
+import $ from 'jquery';
 
 @Component({
   selector: 'app-tiesto',
@@ -9,13 +9,15 @@ declare var $: any;
   templateUrl: './tiesto.component.html',
   styleUrl: './tiesto.component.css',
 })
-export class TiestoComponent {
-  ngOnit() {
+export class TiestoComponent implements OnInit {
+  ngOnInit() {
+    console.log('deneme');
+
     $(() => {
       console.log('test');
     });
-    $(document).ready(() => {
-      console.log('test 2');
-    });
+    // $(document).ready(() => {
+    //   console.log('test 2');
+    // });
   }
 }
