@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { randomInt } from 'crypto';
 import { TiestoComponent } from './tiesto/tiesto.component';
+import { DomatComponent } from './domat/domat.component';
 
 @Component({
   selector: 'app-root',
@@ -23,9 +24,11 @@ import { TiestoComponent } from './tiesto/tiesto.component';
 
     <hr />
     <app-tiesto> </app-tiesto>
+    <hr />
+    <app-domat> </app-domat>
   `,
   styleUrl: './app.component.css',
-  imports: [RouterOutlet, NgFor, CommonModule, TiestoComponent],
+  imports: [RouterOutlet, NgFor, CommonModule, TiestoComponent, DomatComponent],
 })
 export class AppComponent {
   names: string[] = [
