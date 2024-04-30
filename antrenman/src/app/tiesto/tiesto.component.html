@@ -1,3 +1,11 @@
 <div appDidirective color="blue" >
   DJ tiestooo
 </div>
+<div *appCustomIf="true">
+Bu bir yeni div. custom bir if ile structure directive örnek teşkil ediyor.
+</div>
+<ol>
+  <li *appCustomFor="names;let name; let i=index">
+    Bu custom for directivi {{name}} ile çoğaltılıyor.{{i}}
+  </li>
+</ol>
