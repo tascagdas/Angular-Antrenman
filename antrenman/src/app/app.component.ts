@@ -4,7 +4,8 @@ import { RouterOutlet } from '@angular/router';
 import { randomInt } from 'crypto';
 import { TiestoComponent } from './tiesto/tiesto.component';
 import { DomatComponent } from './domat/domat.component';
-import { ParentComponent } from './components/parent-to-child/parent/parent.component';
+import { ParentComponent as ParentComponent_PTC } from './components/parent-to-child/parent/parent.component';
+import { ParentComponent as ParentComponent_CTP } from './components/child-to-parent/parent/parent.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { ParentComponent } from './components/parent-to-child/parent/parent.comp
   template: `
     <hr />
     <app-parent> </app-parent>
+    <app-parent-CTP> </app-parent-CTP>
   `,
   styleUrl: './app.component.css',
   imports: [
@@ -20,7 +22,8 @@ import { ParentComponent } from './components/parent-to-child/parent/parent.comp
     CommonModule,
     TiestoComponent,
     DomatComponent,
-    ParentComponent,
+    ParentComponent_PTC,
+    ParentComponent_CTP,
   ],
 })
 export class AppComponent {
