@@ -4,31 +4,24 @@ import { RouterOutlet } from '@angular/router';
 import { randomInt } from 'crypto';
 import { TiestoComponent } from './tiesto/tiesto.component';
 import { DomatComponent } from './domat/domat.component';
+import { ParentComponent } from './components/parent-to-child/parent/parent.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   template: `
     <hr />
-    <div [ngSwitch]="number">
-      <div *ngSwitchCase="1">cagdas</div>
-      <div *ngSwitchCase="2">selen</div>
-      <div *ngSwitchCase="3">alaattin</div>
-      <div *ngSwitchCase="4">dilek</div>
-      <div *ngSwitchCase="5">dilan</div>
-      <div *ngSwitchCase="6">meral</div>
-      <div *ngSwitchCase="7">erkin</div>
-      <div *ngSwitchCase="8">semih</div>
-      <div *ngSwitchDefault>Hicbiri</div>
-    </div>
-
-    <hr />
-    <app-tiesto> </app-tiesto>
-    <hr />
-    <app-domat> </app-domat>
+    <app-parent> </app-parent>
   `,
   styleUrl: './app.component.css',
-  imports: [RouterOutlet, NgFor, CommonModule, TiestoComponent, DomatComponent],
+  imports: [
+    RouterOutlet,
+    NgFor,
+    CommonModule,
+    TiestoComponent,
+    DomatComponent,
+    ParentComponent,
+  ],
 })
 export class AppComponent {
   names: string[] = [
