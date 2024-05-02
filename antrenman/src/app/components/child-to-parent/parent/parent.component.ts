@@ -9,10 +9,9 @@ import { ChildComponent } from '../child/child.component';
   imports: [ChildComponent],
 })
 export class ParentComponent {
-  inComingMessage: any;
+  inComingMessage: string;
 
   childEvent(obj: any) {
-    this.inComingMessage = obj;
-    console.log(obj);
+    this.inComingMessage = obj.message;
   }
 }
