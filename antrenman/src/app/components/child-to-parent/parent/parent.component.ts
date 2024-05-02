@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChildComponent } from '../child/child.component';
 
 @Component({
@@ -9,8 +9,10 @@ import { ChildComponent } from '../child/child.component';
   imports: [ChildComponent],
 })
 export class ParentComponent {
-  inComingMessage: string;
+  inComingMessage: any;
+
   childEvent(obj: any) {
-    debugger;
+    this.inComingMessage = obj;
+    console.log(obj);
   }
 }

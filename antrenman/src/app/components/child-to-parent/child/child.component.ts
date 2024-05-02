@@ -8,10 +8,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrl: './child.component.css',
 })
 export class ChildComponent implements OnInit {
+  @Output() dataEvent: EventEmitter<any> = new EventEmitter<any>();
   ngOnInit(): void {
     this.dataEvent.emit({
       message: 'childdan parente gönderilen bir string değer',
     });
   }
-  @Output() dataEvent: EventEmitter<any> = new EventEmitter<any>();
 }
