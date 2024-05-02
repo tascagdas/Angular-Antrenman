@@ -6,6 +6,7 @@ import { TiestoComponent } from './tiesto/tiesto.component';
 import { DomatComponent } from './domat/domat.component';
 import { ParentComponent as ParentComponent_PTC } from './components/parent-to-child/parent/parent.component';
 import { ParentComponent as ParentComponent_CTP } from './components/child-to-parent/parent/parent.component';
+import { ParentCtcComponent } from './components/child-to-child/parent-ctc/parent-ctc.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { ParentComponent as ParentComponent_CTP } from './components/child-to-pa
     <hr />
     <app-parent> </app-parent>
     <app-parent-CTP> </app-parent-CTP>
+    <app-parent-ctc> </app-parent-ctc>
   `,
   styleUrl: './app.component.css',
   imports: [
@@ -24,6 +26,7 @@ import { ParentComponent as ParentComponent_CTP } from './components/child-to-pa
     DomatComponent,
     ParentComponent_PTC,
     ParentComponent_CTP,
+    ParentCtcComponent,
   ],
 })
 export class AppComponent {
