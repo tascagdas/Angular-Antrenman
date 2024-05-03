@@ -6,6 +6,7 @@ import { ParentComponent as ParentComponent_PTC } from './components/parent-to-c
 import { ParentComponent as ParentComponent_CTP } from './components/child-to-parent/parent/parent.component';
 import { ParentCtcComponent } from './components/child-to-child/parent-ctc/parent-ctc.component';
 import { DomatComponent } from './domat/domat.component';
+import { BiberComponent } from './biber/biber.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { DomatComponent } from './domat/domat.component';
   template: `
     <hr />
     <app-domat data="deneme"> Bu domatin contenti </app-domat>
+    <app-biber> </app-biber>
   `,
   imports: [
     RouterOutlet,
@@ -23,6 +25,7 @@ import { DomatComponent } from './domat/domat.component';
     ParentComponent_CTP,
     ParentCtcComponent,
     DomatComponent,
+    BiberComponent,
   ],
 })
 export class AppComponent {
