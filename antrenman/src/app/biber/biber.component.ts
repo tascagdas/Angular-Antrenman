@@ -40,10 +40,19 @@ import {
     <button (click)="disable()">disable email</button>
     <br />
     <button (click)="enable()">enable email</button>
-    <div style="border: 1px solid black; width:250px">
+    <div style="border: 1px solid black; width:300px">
       <div style="border: 1px solid black;">
-        form touched: {{ frm.touched }} <br />
-        FirstName form control touched:
+        form touched: @if(frm.touched){
+        <span style="width: 10px; color:green;">&block;</span>
+        }@else{
+        <span style="width: 10px; color:red;">&block;</span>
+        }
+        {{ frm.touched }} <br />
+        FirstName form control touched: @if(frm.get('firstName').touched){
+        <span style="width: 10px; color:green;">&block;</span>
+        }@else{
+        <span style="width: 10px; color:red;">&block;</span>
+        }
         {{ frm.get('firstName').touched }} <br />
         adress group from touched: {{ frm.get('adress').touched }} <br />
         Country from control touched:
