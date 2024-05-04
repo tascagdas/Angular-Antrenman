@@ -1,3 +1,4 @@
+import { NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -9,7 +10,7 @@ import {
 @Component({
   selector: 'app-biber',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgStyle],
   template: `
     <hr />
     <form [formGroup]="frm" (ngSubmit)="onSubmit()">
@@ -42,11 +43,11 @@ import {
     <button (click)="enable()">enable email</button>
     <div style="border: 1px solid black; width:300px">
       <div style="border: 1px solid black;">
-        form touched: @if(frm.touched){
-        <span style="width: 10px; color:green;">&block;</span>
-        }@else{
-        <span style="width: 10px; color:red;">&block;</span>
-        }
+        form touched:
+        <span [ngStyle]="{ 'color': (frm.touched) ? 'green' : 'red' }">
+          &block;
+        </span>
+
         {{ frm.touched }} <br />
         FirstName form control touched: @if(frm.get('firstName').touched){
         <span style="width: 10px; color:green;">&block;</span>
