@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {capitalLetterValidator} from "../validators/capitalLetterValidator";
 
 @Component({
   selector: 'app-biber',
@@ -104,7 +105,7 @@ export class BiberComponent {
   frm: FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.frm = formBuilder.group({
-      firstName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]],
+      firstName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3),capitalLetterValidator]],
       lastName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       tel: [''],
