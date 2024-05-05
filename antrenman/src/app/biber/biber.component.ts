@@ -1,4 +1,4 @@
-import { NgStyle } from '@angular/common';
+import {JsonPipe, NgIf, NgStyle} from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -10,22 +10,50 @@ import {
 @Component({
   selector: 'app-biber',
   standalone: true,
-  imports: [ReactiveFormsModule, NgStyle],
+  imports: [ReactiveFormsModule, NgStyle, JsonPipe, NgIf],
   template: `
     <hr />
+    <br>
+    <br>
+    <br>
+    <hr>
+    <br>
     <form [formGroup]="frm" (ngSubmit)="onSubmit()">
       <input type="text" placeholder="FirstName" formControlName="firstName" />
+      <div *ngIf="!firstName.valid&&(firstName.dirty||firstName.touched)">
+        {{firstName.errors|json}}
+      </div>
+      <br>
       <input type="text" placeholder="LastName" formControlName="lastName" />
+      <div *ngIf="!lastName.valid&&(lastName.dirty||lastName.touched)">
+        {{lastName.errors|json}}
+      </div>
+      <br>
+
       <input type="email" placeholder="Email" formControlName="email" />
+      <div *ngIf="!email.valid&&(email.dirty||email.touched)">
+        {{email.errors|json}}
+      </div>
+      <br>
+
       <input type="tel" placeholder="Tel No" formControlName="tel" />
+
+      <br>
+
       <div formGroupName="adress">
         <input type="text" placeholder="Country" formControlName="country" />
+        <br>
+
         <input type="text" placeholder="City" formControlName="city" />
+        <br>
+
         <input type="text" placeholder="Adress" formControlName="adress" />
       </div>
       <button>Send</button>
     </form>
-    <div>isValid:{{ frm.valid }}</div>
+    <div>isValid:{{ frm.valid }}        <span [ngStyle]="{ 'color': (frm.valid) ? 'green' : 'red' }">
+          &block;
+        </span></div>
     <button (click)="change()">Change</button>
     <br />
     <button (click)="markAsTouched()">markAsTouched</button>
@@ -76,8 +104,8 @@ export class BiberComponent {
   frm: FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.frm = formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: [''],
+      firstName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       tel: [''],
       adress: formBuilder.group({
@@ -128,5 +156,24 @@ export class BiberComponent {
   }
   markAsTouched() {
     this.frm.get('firstName').markAsTouched({ onlySelf: true });
+  }
+  get firstName(){
+    return this.frm.get("firstName")
+  }
+  get email(){
+    return this.frm.get("email")
+  }
+  get lastName(){
+    return this.frm.get("lastName")
+  }
+  get country(){
+    return this.frm.get("address").get("country")
+  }  get city(){
+    return this.frm.get("address").get("city")
+  }  get address(){
+    return this.frm.get("address").get("address")
+  }
+  get tel(){
+    return this.frm.get("tel")
   }
 }
