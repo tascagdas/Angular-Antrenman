@@ -37,7 +37,7 @@ tr:nth-child(even) {
     <hr />
     <br />
     <div style="display: flex;">
-      <div>
+      <div style="width: 40vw;">
         <form [formGroup]="frm" (ngSubmit)="onSubmit()">
           <input
             type="text"
@@ -107,8 +107,17 @@ tr:nth-child(even) {
         <br />
         <button (click)="enable()">enable email</button>
       </div>
-      <div style="border: 1px solid black; width:300px; margin-left:100px">
+      <div style="border: 1px solid black; width:50vw; padding:100px">
         <table>
+          <tr>
+            <td>form is Valid:</td>
+            <td>{{ frm.valid }}</td>
+            <td>
+              <span [ngStyle]="{ color: frm.valid ? 'green' : 'red' }">
+                &block;
+              </span>
+            </td>
+          </tr>
           <tr>
             <td>form touched:</td>
             <td>{{ frm.touched }}</td>
@@ -118,8 +127,101 @@ tr:nth-child(even) {
               </span>
             </td>
           </tr>
+          <tr>
+            <td>FirstName form control touched:</td>
+            <td>{{ frm.get('firstName').touched }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.get('firstName').touched ? 'green' : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>adress group from touched:</td>
+            <td>{{ frm.get('adress').touched }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.get('adress').touched ? 'green' : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Country from control touched:</td>
+            <td>{{ frm.get('adress').get('country').touched }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.get('adress').get('country').touched
+                    ? 'green'
+                    : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>form dirty:</td>
+            <td>{{ frm.dirty }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.dirty ? 'green' : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>firstName form control dirty</td>
+            <td>{{ frm.get('firstName').dirty }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.get('firstName').dirty ? 'green' : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>form pristine</td>
+            <td>{{ frm.pristine }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.pristine ? 'green' : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>firstName form control pristine:</td>
+            <td>{{ frm.get('firstName').pristine }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.get('firstName').pristine ? 'green' : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
         </table>
-
+        <hr />
         <div style="border: 1px solid black;">
           form touched:
           <span [ngStyle]="{ color: frm.touched ? 'green' : 'red' }">
