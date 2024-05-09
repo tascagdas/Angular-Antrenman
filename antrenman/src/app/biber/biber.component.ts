@@ -98,12 +98,7 @@ tr:nth-child(even) {
           </div>
           <button style="background-color: yellow; color:black">Send</button>
         </form>
-        <div>
-          isValid:{{ frm.valid }}
-          <span [ngStyle]="{ color: frm.valid ? 'green' : 'red' }">
-            &block;
-          </span>
-        </div>
+<hr>
         <button (click)="change()">Change</button>
         <br />
         <button (click)="markAsTouched()">markAsTouched</button>
