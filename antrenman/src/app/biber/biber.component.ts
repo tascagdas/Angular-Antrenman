@@ -1,4 +1,4 @@
-import {JsonPipe, NgIf, NgStyle} from '@angular/common';
+import { JsonPipe, NgIf, NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -6,13 +6,26 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {capitalLetterValidator} from "../validators/capitalLetterValidator";
+import { capitalLetterValidator } from '../validators/capitalLetterValidator';
 
 @Component({
   selector: 'app-biber',
   standalone: true,
   imports: [ReactiveFormsModule, NgStyle, JsonPipe, NgIf],
   styles: `
+  button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
   table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -83,7 +96,7 @@ tr:nth-child(even) {
 
             <input type="text" placeholder="Adress" formControlName="adress" />
           </div>
-          <button>Send</button>
+          <button style="background-color: yellow; color:black">Send</button>
         </form>
         <div>
           isValid:{{ frm.valid }}
@@ -221,53 +234,6 @@ tr:nth-child(even) {
             </td>
           </tr>
         </table>
-        <hr />
-        <div style="border: 1px solid black;">
-          form touched:
-          <span [ngStyle]="{ color: frm.touched ? 'green' : 'red' }">
-            &block;
-          </span>
-
-          {{ frm.touched }} <br />
-
-          FirstName form control touched:
-          <span
-            [ngStyle]="{
-              color: frm.get('firstName').touched ? 'green' : 'red'
-            }"
-          >
-            &block;
-          </span>
-          {{ frm.get('firstName').touched }}
-
-          <br />
-          adress group from touched:
-          <span
-            [ngStyle]="{ color: frm.get('adress').touched ? 'green' : 'red' }"
-          >
-            &block;
-          </span>
-          {{ frm.get('adress').touched }} <br />
-          Country from control touched:
-          <span
-            [ngStyle]="{
-              color: frm.get('adress').get('country').touched ? 'green' : 'red'
-            }"
-          >
-            &block;
-          </span>
-          {{ frm.get('adress').get('country').touched }}
-        </div>
-        <div style="border: 1px solid black;">
-          form dirty:{{ frm.dirty }}
-          <br />
-          firstName form control dirty: {{ frm.get('firstName').dirty }}
-        </div>
-        <div style="border: 1px solid black;">
-          form pristine:{{ frm.pristine }}
-          <br />
-          firstName form control pristine: {{ frm.get('firstName').pristine }}
-        </div>
       </div>
     </div>
   `,
