@@ -98,7 +98,7 @@ tr:nth-child(even) {
           </div>
           <button style="background-color: yellow; color:black">Send</button>
         </form>
-<hr>
+        <hr />
         <button (click)="change()">Change</button>
         <br />
         <button (click)="markAsTouched()">markAsTouched</button>
@@ -114,6 +114,10 @@ tr:nth-child(even) {
         <button (click)="disable()">disable email</button>
         <br />
         <button (click)="enable()">enable email</button>
+        <br />
+        <button (click)="pending()">pending</button>
+        <br />
+        <button (click)="enable()">xx</button>
       </div>
       <div style="border: 1px solid black; width:50vw; padding:100px">
         <table>
@@ -122,7 +126,7 @@ tr:nth-child(even) {
             <td>{{ frm.valid }}</td>
             <td>
               <span [ngStyle]="{ color: frm.valid ? 'green' : 'red' }">
-                &block;
+                &starf;
               </span>
             </td>
           </tr>
@@ -228,6 +232,19 @@ tr:nth-child(even) {
               </span>
             </td>
           </tr>
+          <tr>
+            <td>is frm pending</td>
+            <td>{{ frm.pending }}</td>
+            <td>
+              <span
+                [ngStyle]="{
+                  color: frm.pending ? 'green' : 'red'
+                }"
+              >
+                &block;
+              </span>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -304,6 +321,9 @@ export class BiberComponent {
   }
   markAsTouched() {
     this.frm.get('firstName').markAsTouched({ onlySelf: true });
+  }
+  pending() {
+    this.frm.markAsPending();
   }
   get firstName() {
     return this.frm.get('firstName');
