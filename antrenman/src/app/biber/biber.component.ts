@@ -90,6 +90,16 @@ tr:nth-child(even) {
               formControlName="country"
             />
             <br />
+            <div
+              *ngIf="
+                !frm.get('adress').get('country').valid &&
+                (frm.get('adress').get('country').dirty ||
+                  frm.get('adress').get('country').touched)
+              "
+            >
+              {{ frm.get('adress').get('country').errors | json }}
+              <br />
+            </div>
 
             <input type="text" placeholder="City" formControlName="city" />
             <br />
@@ -274,7 +284,14 @@ export class BiberComponent {
       email: ['', [Validators.required, Validators.email]],
       tel: [''],
       adress: formBuilder.group({
-        country: [''],
+        country: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(4),
+            Validators.pattern('[A-Z]*'),
+          ],
+        ],
         city: [''],
         adress: [''],
       }),
