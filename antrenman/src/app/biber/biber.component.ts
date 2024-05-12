@@ -80,7 +80,9 @@ tr:nth-child(even) {
           <br />
 
           <input type="tel" placeholder="Tel No" formControlName="tel" />
-
+          <div *ngIf="!tel.valid && (tel.dirty || tel.touched)">
+            {{ tel.errors | json }}
+          </div>
           <br />
 
           <div formGroupName="adress">
@@ -106,28 +108,45 @@ tr:nth-child(even) {
 
             <input type="text" placeholder="Adress" formControlName="adress" />
           </div>
-          <button style="background-color: yellow; color:black">Send</button>
+          <div style="display: flex;">
+            <button style="background-color: yellow; color:black">Send</button>
+            <button
+              style="background-color: yellowgreen; color:black"
+              (click)="makeFormValid()"
+            >
+              Fill form as valid
+            </button>
+          </div>
         </form>
         <hr />
-        <button (click)="change()">Change</button>
-        <br />
-        <button (click)="markAsTouched()">markAsTouched</button>
-        <br />
-        <button (click)="markAllAsTouched()">markAllAsTouched</button>
-        <br />
-        <button (click)="markAsUntouched()">markAsUntouched</button>
-        <br />
-        <button (click)="markAsDirty()">markAsDirty</button>
-        <br />
-        <button (click)="markAsPristine()">markAsPristine</button>
-        <br />
-        <button (click)="disable()">disable email</button>
-        <br />
-        <button (click)="enable()">enable email</button>
-        <br />
-        <button (click)="pending()">pending</button>
-        <br />
-        <button (click)="enable()">xx</button>
+        <div style="display: flex;">
+          <div>
+            <button (click)="change()">Change</button>
+            <br />
+            <button (click)="markAsTouched()">markAsTouched</button>
+            <br />
+            <button (click)="markAllAsTouched()">markAllAsTouched</button>
+            <br />
+            <button (click)="markAsUntouched()">markAsUntouched</button>
+            <br />
+            <button (click)="markAsDirty()">markAsDirty</button>
+            <br />
+            <button (click)="markAsPristine()">markAsPristine</button>
+            <br />
+            <button (click)="disable()">disable email</button>
+            <br />
+            <button (click)="enable()">enable email</button>
+            <br />
+            <button (click)="pending()">pending</button>
+            <br />
+            <button (click)="enable()">xx</button>
+          </div>
+          <div>
+            {{frm.hasError}}
+            {{frm.valid}}
+
+          </div>
+        </div>
       </div>
       <div style="border: 1px solid black; width:50vw; padding:100px">
         <table>
@@ -282,7 +301,7 @@ export class BiberComponent {
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
-      tel: [''],
+      tel: ['', Validators.pattern(/^\+?\d{10,15}$/)],
       adress: formBuilder.group({
         country: [
           '',
@@ -341,6 +360,28 @@ export class BiberComponent {
   }
   pending() {
     this.frm.markAsPending();
+  }
+
+  makeFormValid() {
+    this.frm.setValue({
+      firstName: 'Victoria',
+      lastName: 'Kalinka',
+      email: 'VK@gmail.com',
+      tel: '+901234351234',
+      adress: {
+        country: 'KARS',
+        city: 'Beykoz',
+        adress: 'karayolları mah. arkasokaklar sok.',
+      },
+    });
+    // this.frm.get('firstName').setValue('Cağdaş');
+    // // this.frm.get('lastName').setValue('Taş');
+    // // this.frm.get('email').setValue('tascagdas@gmail.com');
+    // // this.frm.get('tel').setValue('+905397166827');
+    // this.country.setValue("TURKII")
+    // this.frm.get('address').get('country').setValue('TURKIYE');
+    // this.frm.get('address').get('city').setValue('İstanbul');
+    // this.frm.get('address').get('address').setValue('Çırçır mah. Sevda Cad. No.22 D.23');
   }
   get firstName() {
     return this.frm.get('firstName');
