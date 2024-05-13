@@ -73,7 +73,12 @@ tr:nth-child(even) {
           </div>
           <br />
 
-          <input type="email" placeholder="Email" formControlName="email" />
+          <input
+            [ngStyle]="{ border: email.enabled ? '' : 'solid red 1px' }"
+            type="email"
+            placeholder="Email"
+            formControlName="email"
+          />
           <div *ngIf="!email.valid && (email.dirty || email.touched)">
             {{ email.errors | json }}
           </div>
@@ -142,9 +147,8 @@ tr:nth-child(even) {
             <button (click)="enable()">xx</button>
           </div>
           <div>
-            {{frm.hasError}}
-            {{frm.valid}}
-
+            {{ frm.hasError }}
+            {{ frm.valid }}
           </div>
         </div>
       </div>
