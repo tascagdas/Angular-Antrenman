@@ -7,11 +7,26 @@ import {
   Validators,
 } from '@angular/forms';
 import { capitalLetterValidator } from '../validators/capitalLetterValidator';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-biber',
   standalone: true,
-  imports: [ReactiveFormsModule, NgStyle, JsonPipe, NgIf],
+  imports: [
+    ReactiveFormsModule,
+    NgStyle,
+    JsonPipe,
+    NgIf,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    FormsModule,
+  ],
   styles: `
   button {
   background-color: #04AA6D;
@@ -32,6 +47,12 @@ import { capitalLetterValidator } from '../validators/capitalLetterValidator';
   width: 100%;
 }
 
+.form-width{
+    min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
@@ -45,73 +66,134 @@ tr:nth-child(even) {
   template: `
     <hr />
     <br />
-    <br />
-    <br />
     <hr />
     <br />
     <div style="display: flex;">
-      <div style="width: 40vw;">
-        <form [formGroup]="frm" (ngSubmit)="onSubmit()">
-          <input
-            type="text"
-            placeholder="FirstName"
-            formControlName="firstName"
-          />
-          <div
-            *ngIf="!firstName.valid && (firstName.dirty || firstName.touched)"
-          >
-            {{ firstName.errors | json }}
-          </div>
-          <br />
-          <input
-            type="text"
-            placeholder="LastName"
-            formControlName="lastName"
-          />
-          <div *ngIf="!lastName.valid && (lastName.dirty || lastName.touched)">
-            {{ lastName.errors | json }}
-          </div>
-          <br />
-
-          <input
-            [ngStyle]="{ border: email.enabled ? '' : 'solid red 1px' }"
-            type="email"
-            placeholder="Email"
-            formControlName="email"
-          />
-          <div *ngIf="!email.valid && (email.dirty || email.touched)">
-            {{ email.errors | json }}
-          </div>
-          <br />
-
-          <input type="tel" placeholder="Tel No" formControlName="tel" />
-          <div *ngIf="!tel.valid && (tel.dirty || tel.touched)">
-            {{ tel.errors | json }}
-          </div>
-          <br />
-
-          <div formGroupName="adress">
+      <div style="width: 40vw; padding:30px;">
+        <form class="" [formGroup]="frm" (ngSubmit)="onSubmit()">
+          <mat-form-field style="width: 75%;">
+            <mat-label>First Name</mat-label>
             <input
+              matInput
               type="text"
-              placeholder="Country"
-              formControlName="country"
+              placeholder="FirstName"
+              formControlName="firstName"
             />
-            <br />
-            <div
-              *ngIf="
-                !frm.get('adress').get('country').valid &&
-                (frm.get('adress').get('country').dirty ||
-                  frm.get('adress').get('country').touched)
-              "
+            @if (firstName.hasError('firstName') &&
+            !firstName.hasError('required')) {
+            <mat-error>Please enter a valid First Name</mat-error>
+            } @if (firstName.hasError('required')) {
+            <mat-error>First Name is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+
+          <br />
+
+          <mat-form-field style="width: 75%;">
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="LastName"
+              formControlName="lastName"
+            />
+            @if (lastName.hasError('lastName') &&
+            !lastName.hasError('required')) {
+            <mat-error>Please enter a valid Last Name</mat-error>
+            } @if (lastName.hasError('minlength')||
+            lastName.hasError('maxlength')) {
+            <mat-error
+              >Lastname should be between
+              <strong>3-25</strong> characters</mat-error
             >
-              {{ frm.get('adress').get('country').errors | json }}
-              <br />
-            </div>
+            }@if (lastName.hasError('required')) {
+            <mat-error>Lastname is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
 
-            <input type="text" placeholder="City" formControlName="city" />
+          <br />
+
+          <mat-form-field style="width: 75%;">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              placeholder="Ex. mail@example.com"
+              formControlName="email"
+            />
+            @if (email.hasError('email') && !email.hasError('required')) {
+            <mat-error>Please enter a valid email address</mat-error>
+            } @if (email.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+
+          <br />
+
+          <mat-form-field style="width: 75%;">
+            <mat-label>Telephone</mat-label>
+            <span matTextPrefix>+90 &nbsp;</span>
+            <input
+              type="tel"
+              matInput
+              formControlName="tel"
+              placeholder="512-345-6789"
+            />
+            <mat-icon matSuffix>mode_edit</mat-icon>
+            <mat-hint align="end">{{ tel.value.length }} / 10</mat-hint>
+            @if (tel.hasError('tel') && !tel.hasError('required')) {
+            <mat-error>Please enter a valid tel address</mat-error>
+            } @if (tel.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+
+          <br />
+
+          <div formGroupName="address">
+            <mat-form-field style="width: 75%;">
+              <mat-label>Country</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="country"
+                placeholder="COUNTRY"
+              />
+              @if (frm.get('address').get('country').hasError('country') &&
+              !frm.get('address').get('country').hasError('required')) {
+              <mat-error>Please enter a valid country address</mat-error>
+              } @if (frm.get('address').get('country').hasError('required')) {
+              <mat-error>country is <strong>required</strong></mat-error>
+              }@if (frm.get('address').get('country').hasError('pattern')) {
+              <mat-error>Please write your country name UPPERCASE</mat-error>
+              }@if (frm.get('address').get('country').hasError('minlength')) {
+              <mat-error>Country must be minimum 4 characters</mat-error>
+              }
+            </mat-form-field>
             <br />
 
-            <input type="text" placeholder="Adress" formControlName="adress" />
+            <mat-form-field style="width: 75%;">
+              <mat-label>City</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="city"
+                placeholder="City"
+              />
+            </mat-form-field>
+
+            <br />
+
+            <mat-form-field style="width: 75%;">
+              <mat-label>Address</mat-label>
+              <textarea
+                formControlName="address"
+                matInput
+                placeholder="Ex. 100 Main St"
+              >
+1600 Amphitheatre Pkwy</textarea
+              >
+            </mat-form-field>
           </div>
           <div style="display: flex;">
             <button style="background-color: yellow; color:black">Send</button>
@@ -186,12 +268,12 @@ tr:nth-child(even) {
             </td>
           </tr>
           <tr>
-            <td>adress group from touched:</td>
-            <td>{{ frm.get('adress').touched }}</td>
+            <td>address group from touched:</td>
+            <td>{{ frm.get('address').touched }}</td>
             <td>
               <span
                 [ngStyle]="{
-                  color: frm.get('adress').touched ? 'green' : 'red'
+                  color: frm.get('address').touched ? 'green' : 'red'
                 }"
               >
                 &block;
@@ -200,11 +282,11 @@ tr:nth-child(even) {
           </tr>
           <tr>
             <td>Country from control touched:</td>
-            <td>{{ frm.get('adress').get('country').touched }}</td>
+            <td>{{ frm.get('address').get('country').touched }}</td>
             <td>
               <span
                 [ngStyle]="{
-                  color: frm.get('adress').get('country').touched
+                  color: frm.get('address').get('country').touched
                     ? 'green'
                     : 'red'
                 }"
@@ -305,8 +387,8 @@ export class BiberComponent {
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
-      tel: ['', Validators.pattern(/^\+?\d{10,15}$/)],
-      adress: formBuilder.group({
+      tel: [''],
+      address: formBuilder.group({
         country: [
           '',
           [
@@ -316,7 +398,7 @@ export class BiberComponent {
           ],
         ],
         city: [''],
-        adress: [''],
+        address: [''],
       }),
     });
 
@@ -371,11 +453,11 @@ export class BiberComponent {
       firstName: 'Victoria',
       lastName: 'Kalinka',
       email: 'VK@gmail.com',
-      tel: '+901234351234',
-      adress: {
+      tel: '1234351234',
+      address: {
         country: 'KARS',
         city: 'Beykoz',
-        adress: 'karayolları mah. arkasokaklar sok.',
+        address: 'karayolları mah. arkasokaklar sok.',
       },
     });
     // this.frm.get('firstName').setValue('Cağdaş');
