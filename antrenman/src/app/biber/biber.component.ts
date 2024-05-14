@@ -64,12 +64,8 @@ tr:nth-child(even) {
 }
 `,
   template: `
-    <hr />
-    <br />
-    <hr />
-    <br />
-    <div style="display: flex;">
-      <div style="width: 40vw; padding:30px;">
+    <div style="display: flex; margin-top:100px">
+      <div style="width: 40vw; padding:30px; text-align: center">
         <form class="" [formGroup]="frm" (ngSubmit)="onSubmit()">
           <mat-form-field style="width: 75%;">
             <mat-label>First Name</mat-label>
@@ -191,12 +187,11 @@ tr:nth-child(even) {
                 matInput
                 placeholder="Ex. 100 Main St"
               >
-1600 Amphitheatre Pkwy</textarea
-              >
+              1600 Amphitheatre Pkwy</textarea>
             </mat-form-field>
           </div>
           <div style="display: flex;">
-            <button style="background-color: yellow; color:black">Send</button>
+            <button style="background-color: orange; color:black">Send</button>
             <button
               style="background-color: yellowgreen; color:black"
               (click)="makeFormValid()"
@@ -205,36 +200,29 @@ tr:nth-child(even) {
             </button>
           </div>
         </form>
-        <hr />
-        <div style="display: flex;">
-          <div>
-            <button (click)="change()">Change</button>
-            <br />
-            <button (click)="markAsTouched()">markAsTouched</button>
-            <br />
-            <button (click)="markAllAsTouched()">markAllAsTouched</button>
-            <br />
-            <button (click)="markAsUntouched()">markAsUntouched</button>
-            <br />
-            <button (click)="markAsDirty()">markAsDirty</button>
-            <br />
-            <button (click)="markAsPristine()">markAsPristine</button>
-            <br />
-            <button (click)="disable()">disable email</button>
-            <br />
-            <button (click)="enable()">enable email</button>
-            <br />
-            <button (click)="pending()">pending</button>
-            <br />
-            <button (click)="enable()">xx</button>
-          </div>
-          <div>
-            {{ frm.hasError }}
-            {{ frm.valid }}
-          </div>
+      </div>
+      <div style="width: 20vw; border: solid 1px red text-align: center">
+        <div style="text-align: center margin-top:50px">
+          <button (click)="change()">Change</button>
+          <br />
+          <button (click)="markAsTouched()">markAsTouched</button>
+          <br />
+          <button (click)="markAllAsTouched()">markAllAsTouched</button>
+          <br />
+          <button (click)="markAsUntouched()">markAsUntouched</button>
+          <br />
+          <button (click)="markAsDirty()">markAsDirty</button>
+          <br />
+          <button (click)="markAsPristine()">markAsPristine</button>
+          <br />
+          <button (click)="disable()">disable email</button>
+          <br />
+          <button (click)="enable()">enable email</button>
+          <br />
+          <button (click)="pending()">pending</button>
         </div>
       </div>
-      <div style="border: 1px solid black; width:50vw; padding:100px">
+      <div style="border: 1px solid black; width:50vw; padding:10px">
         <table>
           <tr>
             <td>form is Valid:</td>
@@ -460,14 +448,6 @@ export class BiberComponent {
         address: 'karayolları mah. arkasokaklar sok.',
       },
     });
-    // this.frm.get('firstName').setValue('Cağdaş');
-    // // this.frm.get('lastName').setValue('Taş');
-    // // this.frm.get('email').setValue('tascagdas@gmail.com');
-    // // this.frm.get('tel').setValue('+905397166827');
-    // this.country.setValue("TURKII")
-    // this.frm.get('address').get('country').setValue('TURKIYE');
-    // this.frm.get('address').get('city').setValue('İstanbul');
-    // this.frm.get('address').get('address').setValue('Çırçır mah. Sevda Cad. No.22 D.23');
   }
   get firstName() {
     return this.frm.get('firstName');

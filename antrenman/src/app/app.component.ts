@@ -12,8 +12,6 @@ import { BiberComponent } from './biber/biber.component';
   selector: 'app-root',
   standalone: true,
   template: `
-    <hr />
-    <app-domat data="deneme"> Bu domatin contenti </app-domat>
     <app-biber> </app-biber>
   `,
   imports: [
