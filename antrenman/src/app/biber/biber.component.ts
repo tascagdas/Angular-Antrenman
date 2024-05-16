@@ -196,7 +196,7 @@ tr:nth-child(even) {
               style="background-color: yellowgreen; color:black"
               (click)="makeFormValid()"
             >
-              Fill form as valid
+              Fill the form with valid values
             </button>
           </div>
         </form>
