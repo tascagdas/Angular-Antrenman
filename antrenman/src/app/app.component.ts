@@ -7,12 +7,14 @@ import { ParentComponent as ParentComponent_CTP } from './components/child-to-pa
 import { ParentCtcComponent } from './components/child-to-child/parent-ctc/parent-ctc.component';
 import { DomatComponent } from './domat/domat.component';
 import { BiberComponent } from './biber/biber.component';
+import { OrmanMeyvesiComponent } from './orman-meyvesi/orman-meyvesi.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   template: `
-    <app-biber> </app-biber>
+    <!-- <app-biber> </app-biber> -->
+     <app-orman-meyvesi> </app-orman-meyvesi>
   `,
   imports: [
     RouterOutlet,
@@ -24,6 +26,7 @@ import { BiberComponent } from './biber/biber.component';
     ParentCtcComponent,
     DomatComponent,
     BiberComponent,
+    OrmanMeyvesiComponent
   ],
 })
 export class AppComponent {
