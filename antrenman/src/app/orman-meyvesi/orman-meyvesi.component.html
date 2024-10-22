@@ -1,21 +1,13 @@
-<div *ngIf="condition; else other">
-    deneme ngif
-</div>
-<ng-template #other>
-    <div>
-        eski yontem else
-    </div>
-</ng-template>
-@if (condition; as result) {
-<div>
-    deneme &#9824; &commat; if
-    {{result}}
-</div>
-}@else if(condition==true || condition== false){
-
-}
-@else {
-<div>
-    yeni yontem else
-</div>
-}
+<ul>
+    <li *ngFor="let number of numbers">
+        {{number}}
+    </li>
+</ul>
+<hr>
+<ul>
+    @for (number of numbers; track number) {
+        <li>
+            {{number}}
+        </li>
+    }
+</ul>
