@@ -1,13 +1,25 @@
 <ul>
-    <li *ngFor="let number of numbers">
-        {{number}}
-    </li>
+    <ng-template *ngIf="numbers.length > 0 ; else noNumbers">
+        <li *ngFor="let number of numbers">
+            {{number}}
+        </li>
+    </ng-template>
+    <ng-template #noNumbers>
+        <li>
+            numbers array is empty
+        </li>
+    </ng-template>
+
 </ul>
 <hr>
 <ul>
-    @for (number of numbers; track number) {
-        <li>
-            {{number}}
-        </li>
+    @for (number of numbers; track number; let i=$index; let f=$first; let l=$last) {
+    <li>
+        {{i}} - {{number}}
+    </li>
+    }@empty {
+    <li>
+        numbers array is empty
+    </li>
     }
 </ul>
