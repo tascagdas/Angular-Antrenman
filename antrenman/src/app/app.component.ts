@@ -1,4 +1,4 @@
-import { CommonModule, NgFor } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TiestoComponent } from './tiesto/tiesto.component';
@@ -18,8 +18,6 @@ import { OrmanMeyvesiComponent } from './orman-meyvesi/orman-meyvesi.component';
   `,
   imports: [
     RouterOutlet,
-    NgFor,
-    CommonModule,
     TiestoComponent,
     ParentComponent_PTC,
     ParentComponent_CTP,
@@ -27,7 +25,7 @@ import { OrmanMeyvesiComponent } from './orman-meyvesi/orman-meyvesi.component';
     DomatComponent,
     BiberComponent,
     OrmanMeyvesiComponent
-  ],
+],
 })
 export class AppComponent {
   names: string[] = [

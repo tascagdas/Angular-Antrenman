@@ -1,14 +1,14 @@
-@switch (data) {
-    @case (1) {
-        <p>data = 1</p>
+<ul>
+  @if (numbers.length > 0 ) {
+    @for (number of numbers; track number) {
+      <li>
+        {{number}}
+      </li>
     }
-    @case (2) {
-        <p>data = 2</p>
-    }
-    @case (3) {
-        <p>data = 3</p>
-    }
-    @default {
-        <p>data 1, 2 veya 3 degil.</p>
-    }
-}
+  } @else {
+    <li>
+      numbers array is empty
+    </li>
+  }
+
+</ul>

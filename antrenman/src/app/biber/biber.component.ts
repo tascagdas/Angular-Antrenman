@@ -1,4 +1,4 @@
-import { JsonPipe, NgIf, NgStyle } from '@angular/common';
+import { JsonPipe, NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormBuilder,
@@ -20,13 +20,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     ReactiveFormsModule,
     NgStyle,
     JsonPipe,
-    NgIf,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    FormsModule,
-  ],
+    FormsModule
+],
   styles: `
   button {
   background-color: #04AA6D;
