@@ -11,4 +11,5 @@ import { Component } from '@angular/core';
 export class OrmanMeyvesiComponent {
   numbers : number[] = []
   condition : boolean = true;
+  data : number = 1;
 }
