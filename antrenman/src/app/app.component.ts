@@ -8,6 +8,7 @@ import { ParentCtcComponent } from './components/child-to-child/parent-ctc/paren
 import { DomatComponent } from './domat/domat.component';
 import { BiberComponent } from './biber/biber.component';
 import { OrmanMeyvesiComponent } from './orman-meyvesi/orman-meyvesi.component';
+import { HomeComponent } from "./components/home/home.component";
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,8 @@ import { OrmanMeyvesiComponent } from './orman-meyvesi/orman-meyvesi.component';
   template: `
     <!-- <app-biber> </app-biber> -->
      <app-orman-meyvesi> </app-orman-meyvesi>
+     <br>
+     <app-home></app-home>
   `,
   imports: [
     RouterOutlet,
@@ -24,7 +27,8 @@ import { OrmanMeyvesiComponent } from './orman-meyvesi/orman-meyvesi.component';
     ParentCtcComponent,
     DomatComponent,
     BiberComponent,
-    OrmanMeyvesiComponent
+    OrmanMeyvesiComponent,
+    HomeComponent
 ],
 })
 export class AppComponent {
