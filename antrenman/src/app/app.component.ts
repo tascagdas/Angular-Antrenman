@@ -15,9 +15,21 @@ import { HomeComponent } from "./components/home/home.component";
   standalone: true,
   template: `
     <!-- <app-biber> </app-biber> -->
-     <app-orman-meyvesi> </app-orman-meyvesi>
+     <!-- <app-orman-meyvesi> </app-orman-meyvesi> -->
      <br>
-     <app-home></app-home>
+     <button (click)="changeCondition()">Change</button>
+     @defer (when condition) {
+      <app-home></app-home>
+     }
+     @placeholder {
+      placeholder
+     }
+     @loading {
+      loading
+     }
+     @error {
+      Error durumu
+     }
   `,
   imports: [
     RouterOutlet,
@@ -29,9 +41,15 @@ import { HomeComponent } from "./components/home/home.component";
     BiberComponent,
     OrmanMeyvesiComponent,
     HomeComponent
-],
+  ],
 })
 export class AppComponent {
+  condition: boolean = false;
+  changeCondition() {
+    this.condition = !this.condition
+  }
+
+
   names: string[] = [
     'cagdas',
     'selen',
