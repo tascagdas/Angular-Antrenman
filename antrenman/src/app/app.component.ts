@@ -21,10 +21,10 @@ import { HomeComponent } from "./components/home/home.component";
      @defer (when condition) {
       <app-home></app-home>
      }
-     @placeholder {
+     @placeholder (minimum 500ms) {
       placeholder
      }
-     @loading {
+     @loading (after 50ms; minimum 500ms;) {
       loading
      }
      @error {
